@@ -22,7 +22,7 @@ class Room(models.Model):
 class User_info(models.Model):
     user_name = models.CharField(max_length=50)
     user_gender = models.CharField(max_length=50)
-    user_homewtown = models.CharField(max_length=50)
+    user_hometown = models.CharField(max_length=50)
     user_phone = models.CharField(max_length=50)
     user_idcard = models.CharField(max_length=50)
     user_company = models.CharField(max_length=50)

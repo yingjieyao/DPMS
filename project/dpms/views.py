@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django import forms
 from models import User
+from user_mana_views import *
 
 class UserForm(forms.Form):
     username = forms.CharField(label='用户名', max_length=50)
@@ -60,6 +61,7 @@ def regist(req):
     return render_to_response('regist.html', {'user_form': user_form}, context_instance=RequestContext(req))
 
 def logout(req):
-    response = HttpResponse("LOG OUT")
+    response = HttpResponseRedirect("/dpms/login/")
     response.delete_cookie("username")
     return response
+

@@ -9,4 +9,8 @@ urlpatterns = [
         url(r'^regist/$', views.regist, name='regist'),
         url(r'^logout/$', views.logout, name='logout'),
         url(r'^index/$', views.index, name='index'),
+        url(r'^listuser/$', views.listuser, name='listuser'),
+        url(r'^adduser/$', views.adduser, name='adduser'),
+        url(r'^alteruser/$', views.alteruser, name='alteruser'),
+        url(r'^deleteuser/$', views.deleteuser, name='deleteuser'),
 ]

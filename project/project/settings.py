@@ -25,49 +25,49 @@ SECRET_KEY = ')!kek=82!(f4ly^nm=ekp6+3fh_y4t(i7^1qmo8&-*pq7csobc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'dpms',
-]
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'dpms',
+        ]
 
 MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+        'django.middleware.security.SecurityMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        ]
 
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'DIRS': [],
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': [
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
+                    ],
+                },
+            },
+        ]
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
@@ -76,34 +76,34 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dpms',
-        'USER': 'root',
-        'PASSWORD': 'yyjmac',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
-}
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'dpms',
+            'USER': 'root',
+            'PASSWORD': 'yyjmac',
+            'HOST': 'localhost',
+            'PORT': '3306',
+            }
+        }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+        {
+            'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+            },
+        {
+            'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+            },
+        {
+            'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+            },
+        {
+            'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+            },
+        ]
 
 
 # Internationalization
@@ -125,3 +125,37 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# # LOGGING config
+# LOGGINS = {
+#         'version': 1,
+#         'disable_existing_loggers': True,
+#         'formatters': {
+#             'standard': {
+#                 'format': '%(asctime)s [%(threadName)s:%(thread)d] [%(name)s:%(lineno)d] [%(levelname)s]- %(message)s'
+#                 },
+#             },
+#         'filters': {
+#             },
+#         'handlers': {
+#             'default': {
+#                 'level':'DEBUG',
+#                 'class':'logging.handlers.RotatingFileHandler',
+#                 'filename': os.path.join('~/code/DPMS/','all.log'),
+#                 'maxBytes': 1024*1024*5, # 5 MB
+#                 'backupCount': 5,
+#                 'formatter':'standard',
+#                 },
+#             'consule': {
+#                 'level':'DEBUG',
+#                 'class': 'logging.StreamHandler',
+#                 'formatter': 'standard',
+#                 },
+#             },
+#         'loggers': {
+#             'django': {
+#                 'handlers': ['default', 'consule'],
+#                 'level': 'DEBUG',
+#                 'propagate': False
+#                 },
+#             }
+# }

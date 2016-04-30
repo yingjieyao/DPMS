@@ -13,4 +13,5 @@ urlpatterns = [
         url(r'^adduser/$', views.adduser, name='adduser'),
         url(r'^alteruser/$', views.alteruser, name='alteruser'),
         url(r'^deleteuser/$', views.deleteuser, name='deleteuser'),
+        url(r'^listdevice/$', views.listdevice, name='listdevice'),
 ]

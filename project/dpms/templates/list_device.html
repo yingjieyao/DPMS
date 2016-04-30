@@ -1,0 +1,13 @@
+<html>
+    <body>
+        {% for fi in fm %}
+            {{ fi.name }}
+            <!--<a href="/dpms/deleteuser/?id={{fi.id}}">delete</a> <br/>
+            <input id={{fi.id}} type="submit" value="delete"> -->
+        {% endfor %}
+          <!--  {% csrf_token %}
+            {% for fi in fm %}
+            <p>{{fi.label_tag }} : {{ fi }} <br/> </p>
+            {% endfor %} -->
+        </body>
+</html>

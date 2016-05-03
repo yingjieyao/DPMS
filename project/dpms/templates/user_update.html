@@ -1,0 +1,20 @@
+<html>
+    <head lang="en">
+        <meta charset = "utf-8">
+        <title>修改设备信息</title>
+    </head>
+    <body>
+        <form action="/dpms/adduser/" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ data.id }}"/>
+            姓名:<input name="user_name" type="text" value="{{ data.user_name }}"></br>
+            性别:<input name="user_gender" type="text" value="{{ data.user_gender }}"></br>
+            籍贯:<input name="user_hometown" type="text" value="{{ data.user_hometown }}"></br>
+            电话:<input name="user_phone" type="text" value="{{ data.user_phone }}"></br>
+            身份证号:<input name="user_idcard" type="text" value="{{ data.user_idcard }}"></br>
+            工作单位:<input name="user_company" type="text" value="{{ data.user_company }}"></br>
+            <input type="submit" value="保存"/>
+        </form>
+    </body>
+
+</html>

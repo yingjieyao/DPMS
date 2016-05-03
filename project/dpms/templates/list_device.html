@@ -1,13 +1,34 @@
 <html>
     <body>
-        {% for fi in fm %}
-            {{ fi.name }}
-            <!--<a href="/dpms/deleteuser/?id={{fi.id}}">delete</a> <br/>
-            <input id={{fi.id}} type="submit" value="delete"> -->
-        {% endfor %}
-          <!--  {% csrf_token %}
-            {% for fi in fm %}
-            <p>{{fi.label_tag }} : {{ fi }} <br/> </p>
-            {% endfor %} -->
+        <style>
+            body{
+                text-align:center;
+            }
+            #tt{
+                margin: 0 auto;
+            }
+        </style>
         </body>
+        <table id="tt" border="2">
+            <tr>
+            <td>设备名称</td>
+            <td>设备类型</td>
+            <td>brand </td>
+            <td>添加时间</td></tr>
+            {% for d in fm %}
+            <tr {% if forloop.counter|divisibleby:"2" %}
+                style="background: gainboro" {% else %}
+                style="background: aquamarine" {% endif %}>
+                <!-- <td>{{ d.id }} </td> -->
+                <td>{{ d.name}} </td>
+                <td> {{ d.device_type}} </td>
+                <td> {{ d.brand }} </td>
+                <td> {{ d.date}} </td>
+                <td> <a href="/dpms/deletedevice/?id={{d.id}}"> 删除</a>
+                    <a href="/dpms/get_device_id/?id={{d.id}}"> 修改</a> </td>
+
+            </tr>
+            {%  endfor %}
+        </table>
+        <a href="/dpms/adddevice2/">添加用户</a>
 </html>

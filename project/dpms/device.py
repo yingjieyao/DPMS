@@ -20,25 +20,28 @@ def listdevice(req):
         return render_to_response('list_device.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def adddevice(req):
-    response = HttpResponse("adduser")
+    response = HttpResponse("adddevice")
     if req.method == 'POST':
         fm = DeviceForm(req.POST)
         if fm.is_valid():
             fm.save()
         return HttpResponseRedirect('/dpms/listdevice/')
     else:
-        fm = UserInfoForm()
-        return render_to_response('add_user.html', {'fm': fm}, context_instance=RequestContext(req))
+        fm = DeviceForm()
+        return render_to_response('add_device.html', {'fm': fm}, context_instance=RequestContext(req))
 
-# def alteruser(req):
-#     response = HttpResponse("alteruser")
-#     return response
-#
-# def deleteuser(req):
-#     if req.method == 'GET':
-#         id = req.GET.get('id')
-#         User_info.objects.filter(pk=req.GET.get('id')).delete()
-#         return HttpResponseRedirect('/dpms/listuser')
-#
-#     response = HttpResponse("deleteuser")
-#     return response
+def get_device_id(req):
+    if req.method == 'GET':
+        ids = req.GET.get('id')
+        device = Device.objects.filter(pk = ids)
+        print device[0]
+        return render_to_response('device_update.html', {'data': device[0]}, context_instance=RequestContext(req))
+
+
+def deletedevice(req):
+    if req.method == 'GET':
+        id = req.GET.get('id')
+        Device.objects.filter(pk=req.GET.get('id')).delete()
+        return HttpResponseRedirect('/dpms/listdevice')
+
+    return response

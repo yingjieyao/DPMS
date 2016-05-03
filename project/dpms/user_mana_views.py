@@ -20,7 +20,7 @@ def listuser(req):
         fm = list(all_users)
         return render_to_response('list_user.html', {'fm': fm}, context_instance=RequestContext(req))
 
-def adduser(req):
+def adduser2(req):
     response = HttpResponse("adduser")
     if req.method == 'POST':
         fm = UserInfoForm(req.POST)
@@ -31,9 +31,34 @@ def adduser(req):
         fm = UserInfoForm()
         return render_to_response('add_user.html', {'fm': fm}, context_instance=RequestContext(req))
 
+
+def adduser(req):
+    response = HttpResponse("adduser")
+    if req.method == 'POST':
+        fm = UserInfoForm(req.POST)
+        user = User_info()
+        data = req.POST
+        id = req.POST['id']
+        if len(id) > 0:
+            user.id = data['id']
+        user.user_name = data['user_name']
+        user.user_hometown = data['user_hometown']
+        user.user_phone = data['user_phone']
+        user.user_idcard = data['user_idcard']
+        user.user_company = data['user_company']
+        user.save()
+        # if fm.is_valid():
+        #     fm.save()
+        return HttpResponseRedirect('/dpms/listuser/')
+    else:
+        fm = UserInfoForm()
+        return render_to_response('add_user.html', {'fm': fm}, context_instance=RequestContext(req))
+
 def alteruser(req):
-    response = HttpResponse("alteruser")
-    return response
+    if req.method == 'GET':
+        ids = req.GET.get('id')
+        user = User_info.objects.filter(pk = ids)
+        return render_to_response('user_update.html', {'data': user[0]}, context_instance=RequestContext(req))
 
 def deleteuser(req):
     if req.method == 'GET':

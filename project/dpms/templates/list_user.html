@@ -1,13 +1,39 @@
 <html>
     <body>
-        {% for fi in fm %}
-            {{ fi.user_name }}
-            <a href="/dpms/deleteuser/?id={{fi.id}}">delete</a> <br/>
-            <!--<input id={{fi.id}} type="submit" value="delete"> -->
-        {% endfor %}
-          <!--  {% csrf_token %}
-            {% for fi in fm %}
-            <p>{{fi.label_tag }} : {{ fi }} <br/> </p>
-            {% endfor %} -->
+        <style>
+            body{
+                text-align:center;
+            }
+            #tt{
+                margin: 0 auto;
+            }
+        </style>
         </body>
+        <table id="tt" border="2">
+            <tr>
+            <td>用户姓名</td>
+            <td>性别</td>
+            <td>籍贯 </td>
+            <td>电话</td>
+            <td>身份证号</td>
+            <td>公司</td>
+            <td>操作</td> </tr>
+            {% for d in fm %}
+            <tr {% if forloop.counter|divisibleby:"2" %}
+                style="background: gainboro" {% else %}
+                style="background: aquamarine" {% endif %}>
+                <!-- <td>{{ d.id }} </td> -->
+                <td>{{ d.user_name}} </td>
+                <td> {{ d.user_gender}} </td>
+                <td> {{ d.user_hometown }} </td>
+                <td> {{ d.user_phone}} </td>
+                <td> {{ d.user_idcard}} </td>
+                <td> {{ d.user_company}} </td>
+                <td> <a href="/dpms/deleteuser/?id={{d.id}}"> 删除</a>
+                    <a href="/dpms/alteruser/?id={{d.id}}"> 修改</a> </td>
+
+            </tr>
+            {%  endfor %}
+        </table>
+        <a href="/dpms/adduser2/">添加用户</a>
 </html>

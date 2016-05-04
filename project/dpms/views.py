@@ -7,6 +7,8 @@ from django import forms
 from models import User
 from user_mana_views import *
 from device import *
+from charge import *
+from repair import *
 
 class UserForm(forms.Form):
     username = forms.CharField(label='用户名', max_length=50)

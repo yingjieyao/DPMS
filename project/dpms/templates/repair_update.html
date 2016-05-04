@@ -1,0 +1,17 @@
+<html>
+    <head lang="en">
+        <meta charset = "utf-8">
+        <title>修改报修</title>
+    </head>
+    <body>
+        <form action="/dpms/addrepair2/" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ data.id }}"/>
+            用户id<input name="user_id" type="button" value="{{ data.user_id }}"></br>
+            缴费时间<input name="repair_date" type="text" value="{{ data.repair_date }}"></br>
+            备注<input name="repair_content" type="text" value="{{ data.repair_content }}"></br>
+            <input type="submit" value="保存"/>
+        </form>
+    </body>
+
+</html>

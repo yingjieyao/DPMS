@@ -14,9 +14,21 @@ urlpatterns = [
         url(r'^adduser2/$', views.adduser2, name='adduser2'),
         url(r'^alteruser/$', views.alteruser, name='alteruser'),
         url(r'^deleteuser/$', views.deleteuser, name='deleteuser'),
+
         url(r'^listdevice/$', views.listdevice, name='listdevice'),
         url(r'^adddevice/$', views.adddevice, name='adddevice'),
         url(r'^adddevice2/$', views.adddevice2, name='adddevice2'),
         url(r'^deletedevice/$', views.deletedevice, name='deldevice'),
-        url(r'^getdevice/$', views.get_device_id, name='device_id'),
+
+        url(r'^get_charge_id/$', views.get_charge_id, name='charge_id'),
+        url(r'^addcharge/$', views.addcharge, name='addcharge'),
+        url(r'^addcharge2/$', views.addcharge2, name='addcharge2'),
+        url(r'^listcharge/$', views.listcharge, name='listcharge'),
+        url(r'^deletecharge/$', views.deletecharge, name='deletecharge'),
+
+        url(r'^get_repair_id/$', views.get_repair_id, name='repair_id'),
+        url(r'^addrepair/$', views.addrepair, name='addrepair'),
+        url(r'^addrepair2/$', views.addrepair2, name='addrepair2'),
+        url(r'^listrepair/$', views.listrepair, name='listrepair'),
+        url(r'^deleterepair/$', views.deleterepair, name='deleterepair'),
 ]

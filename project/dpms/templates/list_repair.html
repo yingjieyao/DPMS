@@ -11,25 +11,24 @@
         </body>
         <table id="tt" border="2">
             <tr>
-            <td>设备名称</td>
-            <td>设备类型</td>
-            <td>brand </td>
-            <td>添加时间</td></tr>
+            <td>用户编号</td>
+            <td>报修时间</td>
+            <td>备注</td>
+            </tr>
             {% for d in fm %}
             <tr {% if forloop.counter|divisibleby:"2" %}
                 style="background: gainboro" {% else %}
                 style="background: aquamarine" {% endif %}>
                 <!-- <td>{{ d.id }} </td> -->
-                <td>{{ d.name}} </td>
-                <td> {{ d.device_type}} </td>
-                <td> {{ d.brand }} </td>
-                <td> {{ d.date}} </td>
-                <td> <a href="/dpms/deletedevice/?id={{d.id}}"> 删除</a>
-                    <a href="/dpms/get_device_id/?id={{d.id}}"> 修改</a> </td>
+                <td>{{ d.user_id}} </td>
+                <td> {{ d.repair_date}} </td>
+                <td> {{ d.repair_content}} </td>
+                <td> <a href="/dpms/deleterepair/?id={{d.id}}"> 删除</a>
+                    <a href="/dpms/get_repair_id/?id={{d.id}}"> 修改</a> </td>
 
             </tr>
             {%  endfor %}
         </table>
-        <a href="/dpms/adddevice/">添加设备</a>
+        <a href="/dpms/addrepair/">添加报修单</a>
         <a href="/dpms">返回首页</a>
 </html>

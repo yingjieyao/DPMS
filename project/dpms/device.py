@@ -19,6 +19,21 @@ def listdevice(req):
         fm = list(device)
         return render_to_response('list_device.html', {'fm': fm}, context_instance=RequestContext(req))
 
+def adddevice2(req):
+    if req.method == "POST":
+        data = Device()
+        data.id = req.POST['id']
+        data.name = req.POST['name']
+        data.device_type = req.POST['device_type']
+        data.brand = req.POST['brand']
+        date = Device.objects.filter(pk = data.id)
+        data.date = date[0].date
+
+        # data.date = req.POST['date']
+        data.save()
+        return HttpResponseRedirect('/dpms/listdevice/')
+
+
 def adddevice(req):
     response = HttpResponse("adddevice")
     if req.method == 'POST':
@@ -34,7 +49,6 @@ def get_device_id(req):
     if req.method == 'GET':
         ids = req.GET.get('id')
         device = Device.objects.filter(pk = ids)
-        print device[0]
         return render_to_response('device_update.html', {'data': device[0]}, context_instance=RequestContext(req))
 
 

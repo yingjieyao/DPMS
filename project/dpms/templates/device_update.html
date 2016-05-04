@@ -4,13 +4,13 @@
         <title>修改设备信息</title>
     </head>
     <body>
-        <form action="/dpms/adddevice/" method="POST">
+        <form action="/dpms/adddevice2/" method="POST">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ data.id }}"/>
             名字:<input name="name" type="text" value="{{ data.name }}"></br>
-            设备类型:<input name="name" type="text" value="{{ data.type }}"></br>
-            brand:<input name="name" type="text" value="{{ data.brand }}"></br>
-            添加日期:<input name="name" type="text" value="{{ data.date }}"></br>
+            设备类型:<input name="device_type" type="text" value="{{ data.device_type }}"></br>
+            brand:<input name="brand" type="text" value="{{ data.brand }}"></br>
+            <!--添加日期:<input name="date" type="text" value="{{ data.date }}"></br> -->
             <input type="submit" value="保存"/>
         </form>
     </body>

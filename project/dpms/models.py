@@ -11,14 +11,6 @@ class User(models.Model):
     def __unicode__(self):
         return self.username
 
-class Room(models.Model):
-    building_id = models.IntegerField()
-    room_name = models.CharField(max_length=50)
-    room_size = models.CharField(max_length=50)
-
-    def __unicode__(self):
-        return self.username
-
 class User_info(models.Model):
     user_name = models.CharField(max_length=50)
     user_gender = models.CharField(max_length=50)
@@ -30,10 +22,19 @@ class User_info(models.Model):
     def __unicode__(self):
         return self.user_name
 
-class Room_user(models.Model):
-    join_time = models.DateField()
-    room_id = models.ForeignKey(Room)
+class Room(models.Model):
+    building_id = models.IntegerField()
+    room_name = models.CharField(max_length=50)
+    room_size = models.CharField(max_length=50)
     user_id = models.ForeignKey(User_info)
+
+    def __unicode__(self):
+        return self.username
+
+# class Room_user(models.Model):
+#     join_time = models.DateField()
+#     room_id = models.ForeignKey(Room)
+#     user_id = models.ForeignKey(User_info)
 
 class Complaint(models.Model):
     user_id = models.ForeignKey(User_info)

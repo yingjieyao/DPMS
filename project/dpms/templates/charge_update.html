@@ -1,0 +1,20 @@
+<html>
+    <head lang="en">
+        <meta charset = "utf-8">
+        <title>修改设备信息</title>
+    </head>
+    <body>
+        <form action="/dpms/addcharge2/" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ data.id }}"/>
+            用户id<input name="user_id" type="button" value="{{ data.user_id }}"></br>
+            缴费时间<input name="charge_date" type="text" value="{{ data.charge_date }}"></br>
+            收费类型<input name="charge_type" type="text" value="{{ data.charge_type }}"></br>
+            总共缴费<input name="charge_total" type="text" value="{{ data.charge_total }}"></br>
+            已缴费<input name="charge_complet" type="text" value="{{ data.charge_complet }}"></br>
+            备注<input name="charge_cont" type="text" value="{{ data.charge_cont }}"></br>
+            <input type="submit" value="保存"/>
+        </form>
+    </body>
+
+</html>

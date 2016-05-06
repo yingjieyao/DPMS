@@ -9,6 +9,7 @@ from user_mana_views import *
 from device import *
 from charge import *
 from repair import *
+from room import *
 
 class UserForm(forms.Form):
     username = forms.CharField(label='用户名', max_length=50)

@@ -19,6 +19,7 @@ urlpatterns = [
         url(r'^adddevice/$', views.adddevice, name='adddevice'),
         url(r'^adddevice2/$', views.adddevice2, name='adddevice2'),
         url(r'^deletedevice/$', views.deletedevice, name='deldevice'),
+        url(r'^get_device_id/$', views.get_device_id, name='device_id'),
 
         url(r'^get_charge_id/$', views.get_charge_id, name='charge_id'),
         url(r'^addcharge/$', views.addcharge, name='addcharge'),
@@ -31,4 +32,10 @@ urlpatterns = [
         url(r'^addrepair2/$', views.addrepair2, name='addrepair2'),
         url(r'^listrepair/$', views.listrepair, name='listrepair'),
         url(r'^deleterepair/$', views.deleterepair, name='deleterepair'),
+
+        url(r'^get_room_id/$', views.get_room_id, name='room_id'),
+        url(r'^addroom/$', views.addroom, name='addroom'),
+        url(r'^addroom2/$', views.addroom2, name='addroom2'),
+        url(r'^listroom/$', views.listroom, name='listroom'),
+        url(r'^deleteroom/$', views.deleteroom, name='deleteroom'),
 ]

@@ -23,7 +23,7 @@ def addrepair2(req):
     if req.method == "POST":
         data = Repair()
         data.id = req.POST['id']
-        data.user_id = req.POST['user_id']
+        data.user_id = User_info.objects.filter(pk = req.POST['user_id'])[0]
         data.repair_date = req.POST['repair_date']
         data.repair_content = req.POST['repair_content']
         # date = Device.objects.filter(pk = data.id)

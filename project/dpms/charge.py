@@ -17,6 +17,8 @@ def listcharge(req):
     response = HttpResponse("hi")
     if req.method == 'GET':
         charge = Charge.objects.all()
+        for ch in charge:
+            print ch.user_id
         fm = list(charge)
         return render_to_response('list_charge.html', {'fm': fm}, context_instance=RequestContext(req))
 
@@ -24,18 +26,19 @@ def addcharge2(req):
     if req.method == "POST":
         data = Charge()
         data.id = req.POST['id']
-        data.user_id = req.POST['user_id']
-        date = Device.objects.filter(pk = data.id)
-        data.date = date[0].date
-
-        # data.date = req.POST['date']
+        data.user_id = User_info.objects.filter(pk = req.POST['user_id'])[0]
+        date = Charge.objects.filter(pk = data.id)
+        data.charge_date = date[0].charge_date
+        data.charge_type = req.POST['charge_type']
+        data.charge_total = req.POST['charge_total']
+        data.charge_complet = req.POST['charge_complet']
+        data.charge_cont = req.POST['charge_cont']
         data.save()
         return HttpResponseRedirect('/dpms/listcharge/')
 
 
 
 def addcharge(req):
-    response = HttpResponse("adddevice")
     if req.method == 'POST':
         fm = ChargeForm(req.POST)
         if fm.is_valid():

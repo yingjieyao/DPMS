@@ -2,9 +2,16 @@
     <body>
         <form method="POST">
             {% csrf_token %}
-            {% for fi in fm %}
+            <!--{% for fi in fm %}
             <p>{{fi.label_tag }} : {{ fi }} <br/> </p>
-            {% endfor %}
+            {% endfor %} -->
+            用户id<input name="user_id" type="text" value="{{ data.user_id }}"></br>
+            缴费时间<input name="charge_date" type="text" value="{{ data.charge_date }}"></br>
+            收费类型<input name="charge_type" type="text" value="{{ data.charge_type }}"></br>
+            总共缴费<input name="charge_total" type="text" value="{{ data.charge_total }}"></br>
+            已缴费<input name="charge_complet" type="text" value="{{ data.charge_complet }}"></br>
+            备注<input name="charge_cont" type="text" value="{{ data.charge_cont }}"></br>
+
             <input type="submit" value="add">
         </form>
         </body>

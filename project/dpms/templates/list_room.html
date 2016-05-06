@@ -11,30 +11,28 @@
         </body>
         <table id="tt" border="2">
             <tr>
-            <td>用户编号</td>
-            <td>缴费时间</td>
-            <td>收费类型</td>
-            <td>总需缴费</td>
-            <td>已缴费</td>
-            <td>备注</td>
+            <td>房间编号</td>
+            <td>楼层编号</td>
+            <td>房间名称</td>
+            <td>房间大小</td>
+            <td>住户姓名</td>
             </tr>
             {% for d in fm %}
             <tr {% if forloop.counter|divisibleby:"2" %}
                 style="background: gainboro" {% else %}
                 style="background: aquamarine" {% endif %}>
                 <!-- <td>{{ d.id }} </td> -->
+                <td>{{ d.id}} </td>
+                <td>{{ d.building_id}} </td>
+                <td>{{ d.room_name}} </td>
+                <td>{{ d.room_size}} </td>
                 <td>{{ d.user_id.user_name}} </td>
-                <td> {{ d.charge_date}} </td>
-                <td> {{ d.charge_type }} </td>
-                <td> {{ d.charge_total}} </td>
-                <td> {{ d.charge_complet}} </td>
-                <td> {{ d.charge_cont}} </td>
-                <td> <a href="/dpms/deletecharge/?id={{d.id}}"> 删除</a>
-                    <a href="/dpms/get_charge_id/?id={{d.id}}"> 修改</a> </td>
+                <td> <a href="/dpms/deleteroom/?id={{d.id}}"> 删除</a>
+                    <a href="/dpms/get_room_id/?id={{d.id}}"> 修改</a> </td>
 
             </tr>
             {%  endfor %}
         </table>
-        <a href="/dpms/addcharge/">添加收费记录</a>
+        <a href="/dpms/addroom/">添加房间</a>
         <a href="/dpms">返回首页</a>
 </html>

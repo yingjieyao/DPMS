@@ -20,8 +20,8 @@
                 style="background: gainboro" {% else %}
                 style="background: aquamarine" {% endif %}>
                 <!-- <td>{{ d.id }} </td> -->
-                <td>{{ d.user_id}} </td>
-                <td> {{ d.repair_date}} </td>
+                <td>{{ d.user_id.user_name}} </td>
+                <td> {{ d.repair_date|date:"Y-m-d"}} </td>
                 <td> {{ d.repair_content}} </td>
                 <td> <a href="/dpms/deleterepair/?id={{d.id}}"> 删除</a>
                     <a href="/dpms/get_repair_id/?id={{d.id}}"> 修改</a> </td>

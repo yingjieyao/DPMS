@@ -23,7 +23,7 @@
                 <td>{{ d.name}} </td>
                 <td> {{ d.device_type}} </td>
                 <td> {{ d.brand }} </td>
-                <td> {{ d.date}} </td>
+                <td> {{ d.date|date:'Y-m-d'}} </td>
                 <td> <a href="/dpms/deletedevice/?id={{d.id}}"> 删除</a>
                     <a href="/dpms/get_device_id/?id={{d.id}}"> 修改</a> </td>
 

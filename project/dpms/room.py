@@ -21,16 +21,13 @@ def listroom(req):
 
 def addroom2(req):
     if req.method == "POST":
-        # data = Charge()
-        # data.id = req.POST['id']
-        # data.user_id = User_info.objects.filter(pk = req.POST['user_id'])[0]
-        # date = Charge.objects.filter(pk = data.id)
-        # data.charge_date = date[0].charge_date
-        # data.charge_type = req.POST['charge_type']
-        # data.charge_total = req.POST['charge_total']
-        # data.charge_complet = req.POST['charge_complet']
-        # data.charge_cont = req.POST['charge_cont']
-        # data.save()
+        data = Room()
+        data.id = req.POST['id']
+        data.user_id = User_info.objects.filter(pk = req.POST['user_id'])[0]
+        data.building_id= req.POST['building_id']
+        data.room_name = req.POST['room_name']
+        data.room_size = req.POST['room_size']
+        data.save()
         return HttpResponseRedirect('/dpms/listroom/')
 
 

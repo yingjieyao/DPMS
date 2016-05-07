@@ -1,0 +1,19 @@
+<html>
+    <head lang="en">
+        <meta charset = "utf-8">
+        <title>修改报修</title>
+    </head>
+    <body>
+        <form action="/dpms/addroom2/" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ data.id }}"/>
+            <input name="user_id" type="hidden" value="{{ data.user_id.id }}">
+            用户id<input  type="button" value="{{ data.user_id.user_name }}"></br>
+            building_id<input name="building_id" type="text" value="{{ data.building_id }}"></br>
+            room_name<input name="room_name" type="text" value="{{ data.room_name }}"></br>
+            room_size<input name="room_size" type="text" value="{{ data.room_size }}"></br>
+            <input type="submit" value="保存"/>
+        </form>
+    </body>
+
+</html>

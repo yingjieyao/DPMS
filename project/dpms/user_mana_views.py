@@ -4,6 +4,7 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django import forms
+from django.db.models import Q
 from django.forms import ModelForm
 from models import *
 
@@ -68,3 +69,18 @@ def deleteuser(req):
 
     response = HttpResponse("deleteuser")
     return response
+
+def get_user(req):
+    if req.method == 'GET':
+        name = req.GET.get('name')
+        idnumber = req.GET.get('idnumber')
+        f = Q()
+        if len(name):
+            f = f & Q(('user_name', name.strip()))
+
+        if len(idnumber):
+            f = f & Q(('user_idcard', idnumber.strip()))
+
+        user = User_info.objects.filter(f)
+        fm = list(user)
+        return render_to_response('list_user.html', {'fm': fm}, context_instance=RequestContext(req))

@@ -1,10 +1,5 @@
 <html>
     <body>
-        <form action="/dpms/get_user/" method="get">
-            姓名<input type="text" name="name"> </input>
-            身份证号<input type="text" name="idnumber"> </input>
-            <input type="submit" value="查询"></input>
-        </form>
         <style>
             body{
                 text-align:center;
@@ -40,7 +35,6 @@
             </tr>
             {%  endfor %}
         </table>
-        <a href="/dpms/listuser/">所有用户</a>
         <a href="/dpms/adduser2/">添加用户</a>
         <a href="/dpms">返回首页</a>
 </html>

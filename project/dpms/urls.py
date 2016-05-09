@@ -14,12 +14,14 @@ urlpatterns = [
         url(r'^adduser2/$', views.adduser2, name='adduser2'),
         url(r'^alteruser/$', views.alteruser, name='alteruser'),
         url(r'^deleteuser/$', views.deleteuser, name='deleteuser'),
+        url(r'^get_user/$', views.get_user, name='get_user'),
 
         url(r'^listdevice/$', views.listdevice, name='listdevice'),
         url(r'^adddevice/$', views.adddevice, name='adddevice'),
         url(r'^adddevice2/$', views.adddevice2, name='adddevice2'),
         url(r'^deletedevice/$', views.deletedevice, name='deldevice'),
         url(r'^get_device_id/$', views.get_device_id, name='device_id'),
+        url(r'^get_device/$', views.get_device, name='device'),
 
         url(r'^get_charge_id/$', views.get_charge_id, name='charge_id'),
         url(r'^addcharge/$', views.addcharge, name='addcharge'),

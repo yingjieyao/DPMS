@@ -3,6 +3,7 @@
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
+from django.db.models import Q
 from django import forms
 from django.forms import ModelForm
 from models import *
@@ -59,3 +60,14 @@ def deletedevice(req):
         return HttpResponseRedirect('/dpms/listdevice')
 
     return response
+
+def get_device(req):
+    if req.method == 'GET':
+        typ = req.GET.get('type')
+        f = Q()
+        if len(typ):
+            f = f & Q(('device_type', typ.strip()))
+        device = Device.objects.filter(f)
+        fm = list(device)
+        return render_to_response('list_device.html', {'fm': fm}, context_instance=RequestContext(req))
+    pass

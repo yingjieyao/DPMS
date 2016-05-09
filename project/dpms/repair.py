@@ -33,8 +33,6 @@ def addrepair2(req):
         data.save()
         return HttpResponseRedirect('/dpms/listrepair/')
 
-
-
 def addrepair(req):
     response = HttpResponse("adddevice")
     if req.method == 'POST':

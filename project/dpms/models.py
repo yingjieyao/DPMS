@@ -18,6 +18,8 @@ class User_info(models.Model):
     user_phone = models.CharField(max_length=50)
     user_idcard = models.CharField(max_length=50)
     user_company = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+
 
     def __unicode__(self):
         return str(self.id)

@@ -4,7 +4,7 @@ from django.shortcuts import render, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django import forms
-from models import User
+from models import *
 from user_mana_views import *
 from device import *
 from charge import *
@@ -35,7 +35,7 @@ def login(req):
         if user_form.is_valid():
             username = user_form.cleaned_data['username']
             password = user_form.cleaned_data['password']
-            user = User.objects.filter(username__exact=username, password__exact=password)
+            user = User_info.objects.filter(user_name__exact=username, password__exact=password)
             if user:
                 response = HttpResponseRedirect('/dpms/index/')
                 response.set_cookie('username', username, 3600)
@@ -52,11 +52,11 @@ def regist(req):
         if user_form.is_valid():
             username = user_form.cleaned_data['username']
             password = user_form.cleaned_data['password']
-            has = User.objects.filter(username=username)
+            has = User_info.objects.filter(user_name=username)
             if has:
                 return render_to_response('reload.html', {'info' : '用户名已存在', 'next': '登陆'}, context_instance=RequestContext(req))
             else:
-                User.objects.create(username=username, password=password)
+                User_info.objects.create(user_name=username, password=password)
                 response = HttpResponse('regist success!! <a href="/dpms/login/"> login </a>')
                 response.set_cookie('username', username, 3600)
                 return response
@@ -69,3 +69,16 @@ def logout(req):
     response.delete_cookie("username")
     return response
 
+def change_password(req):
+    if method == 'POST':
+        user_name = req.POST['user_name']
+        old = req.POST['old']
+        new = req.POST['new']
+        user = User_info.objects.filter(user_name=user_name, password=old)
+        if len(user) == 0:
+            return 'no exist'
+        else:
+            user.user_name = user_name
+            user.password = new
+            user.save()
+            return HttpResponseRedirect('/dpms/index')

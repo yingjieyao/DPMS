@@ -21,6 +21,15 @@ def listuser(req):
         fm = list(all_users)
         return render_to_response('list_user.html', {'fm': fm}, context_instance=RequestContext(req))
 
+def listuser2(req):
+    response = HttpResponse("hi")
+    if req.method == 'GET':
+        ids = req.GET['id']
+        all_users = User_info.objects.filter(pk = ids)
+        fm = list(all_users)
+        return render_to_response('list_user_self.html', {'fm': fm}, context_instance=RequestContext(req))
+
+
 def adduser2(req):
     response = HttpResponse("adduser")
     if req.method == 'POST':
@@ -43,6 +52,7 @@ def adduser(req):
         if len(id) > 0:
             user.id = data['id']
         user.user_name = data['user_name']
+        user.user_gender = data['user_gender']
         user.user_hometown = data['user_hometown']
         user.user_phone = data['user_phone']
         user.user_idcard = data['user_idcard']
@@ -50,7 +60,10 @@ def adduser(req):
         user.save()
         # if fm.is_valid():
         #     fm.save()
-        return HttpResponseRedirect('/dpms/listuser/')
+        if user.user_name == 'root':
+            return HttpResponseRedirect('/dpms/listuser/')
+        else:
+            return HttpResponseRedirect('/dpms/listuser2/?id='+ str(user.id))
     else:
         fm = UserInfoForm()
         return render_to_response('add_user.html', {'fm': fm}, context_instance=RequestContext(req))
@@ -59,6 +72,18 @@ def alteruser(req):
     if req.method == 'GET':
         ids = req.GET.get('id')
         user = User_info.objects.filter(pk = ids)
+        return render_to_response('user_update.html', {'data': user[0]}, context_instance=RequestContext(req))
+
+def alteruserbyname(req):
+    if req.method == 'GET':
+        ids = req.GET.get('name')
+        f = Q()
+        if len(ids):
+            f = f & Q(('user_name', ids.strip()))
+        else:
+            return HttpResponseDirect('/dpms/index')
+
+        user = User_info.objects.filter(f)
         return render_to_response('user_update.html', {'data': user[0]}, context_instance=RequestContext(req))
 
 def deleteuser(req):

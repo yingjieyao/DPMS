@@ -9,11 +9,16 @@
     <body>
         <h1>welcome {{username}} !</h1>
         <br>
-        <a href="/dpms/listuser/">用户管理</a>
-        <a href="/dpms/listdevice/">设备管理</a>
-        <a href="/dpms/listcharge/">收费管理</a>
+        {% if username == 'root' %}
+            <a href="/dpms/listuser/">用户管理</a>
+            <a href="/dpms/listdevice/">设备管理</a>
+            <a href="/dpms/listcharge/">收费管理</a>
+            <a href="/dpms/listrepair/">报修管理</a>
+            <a href="/dpms/listroom/">房间管理</a>
+        {% else %}
+        <a href="/dpms/alteruserbyname/?name={{ username }}">修改信息</a>
         <a href="/dpms/listrepair/">报修管理</a>
-        <a href="/dpms/listroom/">房间管理</a>
+        {% endif %}
         <a href="/dpms/logout/">退出</a>
     </body>
 </html>

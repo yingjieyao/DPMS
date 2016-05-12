@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django import forms
 from django.forms import ModelForm
+from django.db.models import Q
 from models import *
 
 class RoomForm(ModelForm):
@@ -57,3 +58,19 @@ def deleteroom(req):
         return HttpResponseRedirect('/dpms/listroom')
 
     return response
+
+def get_room(req):
+    if req.method == "GET":
+        room_name = req.GET.get('room_name')
+        build_id = req.GET.get('build_id')
+        f = Q()
+        if len(room_name):
+            f = f & Q(('room_name', room_name.strip()))
+
+        if len(build_id):
+            f = f & Q(('building_id', build_id.strip()))
+
+        roomlist = Room.objects.filter(f)
+        fm = list(roomlist)
+        return render_to_response('list_room.html', {'fm': fm}, context_instance=RequestContext(req))
+

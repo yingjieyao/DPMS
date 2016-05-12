@@ -33,10 +33,6 @@ class Room(models.Model):
     def __unicode__(self):
         return self.username
 
-# class Room_user(models.Model):
-#     join_time = models.DateField()
-#     room_id = models.ForeignKey(Room)
-#     user_id = models.ForeignKey(User_info)
 
 class Complaint(models.Model):
     user_id = models.ForeignKey(User_info)

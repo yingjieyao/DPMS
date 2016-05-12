@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django import forms
 from django.forms import ModelForm
+from django.db.models import Q
 from models import *
 
 class ChargeForm(ModelForm):
@@ -62,3 +63,23 @@ def deletecharge(req):
         return HttpResponseRedirect('/dpms/listcharge')
 
     return response
+
+def get_charge(req):
+    if req.method == "GET":
+        name = req.GET.get("name")
+        f = Q()
+        if len(name):
+            f = f & Q(('user_name', name.strip()))
+            users = User_info.objects.filter(f)
+            if len(users) == 0:
+                fm = []
+                return render_to_response('list_charge.html', {'fm': fm}, context_instance=RequestContext(req))
+            else:
+                t = Q()
+                t = t & Q(("user_id", users[0].id))
+                lis = Charge.objects.filter(t)
+                fm = list(lis)
+                return render_to_response('list_charge.html', {'fm': fm}, context_instance=RequestContext(req))
+        else:
+            return HttpResponseRedirect("/dpms/listcharge/")
+

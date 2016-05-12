@@ -1,0 +1,39 @@
+<html>
+    <body>
+        <style>
+            body{
+                text-align:center;
+            }
+            #tt{
+                margin: 0 auto;
+            }
+        </style>
+        <!--<form action="/dpms/get_device/" method="get">
+            型号<input type="text" name="type"></input>
+            <input type="submit" value="查询"></input>
+        </form> -->
+        </body>
+        <table id="tt" border="2">
+            <tr>
+            <td>投诉者</td>
+            <td>投诉内容 </td>
+            <td>投诉日期</td>
+            <td>操作</td></tr>
+            {% for d in fm %}
+            <tr {% if forloop.counter|divisibleby:"2" %}
+                style="background: gainboro" {% else %}
+                style="background: aquamarine" {% endif %}>
+                <!-- <td>{{ d.id }} </td> -->
+                <td>{{ d.user_id.user_name}} </td>
+                <td> {{ d.comp_content}} </td>
+                <td> {{ d.comp_date|date:'Y-m-d'}} </td>
+                <td> <a href="/dpms/deletecomplaint/?id={{d.id}}"> 删除</a>
+                    </td>
+
+            </tr>
+            {%  endfor %}
+        </table>
+        <a href="/dpms/listcomplaint/">所有投诉</a>
+        <!--<a href="/dpms/addcomplaint/">添加投诉</a> -->
+        <a href="/dpms">返回首页</a>
+</html>

@@ -8,15 +8,20 @@
                 margin: 0 auto;
             }
         </style>
+        <form action="/dpms/get_charge" method="get">
+            业主姓名<input type="text" name="name">
+            <input type="submit" value=查询>
+        </form>
         </body>
         <table id="tt" border="2">
             <tr>
-            <td>用户编号</td>
+            <td>用户姓名</td>
             <td>缴费时间</td>
             <td>收费类型</td>
             <td>总需缴费</td>
             <td>已缴费</td>
             <td>备注</td>
+            <td>操作</td>
             </tr>
             {% for d in fm %}
             <tr {% if forloop.counter|divisibleby:"2" %}
@@ -24,7 +29,7 @@
                 style="background: aquamarine" {% endif %}>
                 <!-- <td>{{ d.id }} </td> -->
                 <td>{{ d.user_id.user_name}} </td>
-                <td> {{ d.charge_date}} </td>
+                <td> {{ d.charge_date|date:"Y-m-d" }} </td>
                 <td> {{ d.charge_type }} </td>
                 <td> {{ d.charge_total}} </td>
                 <td> {{ d.charge_complet}} </td>

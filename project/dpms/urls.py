@@ -27,6 +27,7 @@ urlpatterns = [
         url(r'^get_device/$', views.get_device, name='device'),
 
         url(r'^get_charge_id/$', views.get_charge_id, name='charge_id'),
+        url(r'^get_charge/$', views.get_charge, name='charge'),
         url(r'^addcharge/$', views.addcharge, name='addcharge'),
         url(r'^addcharge2/$', views.addcharge2, name='addcharge2'),
         url(r'^listcharge/$', views.listcharge, name='listcharge'),
@@ -38,9 +39,17 @@ urlpatterns = [
         url(r'^listrepair/$', views.listrepair, name='listrepair'),
         url(r'^deleterepair/$', views.deleterepair, name='deleterepair'),
 
+        url(r'^get_room/$', views.get_room, name='room'),
         url(r'^get_room_id/$', views.get_room_id, name='room_id'),
         url(r'^addroom/$', views.addroom, name='addroom'),
         url(r'^addroom2/$', views.addroom2, name='addroom2'),
         url(r'^listroom/$', views.listroom, name='listroom'),
         url(r'^deleteroom/$', views.deleteroom, name='deleteroom'),
+
+        url(r'^get_complaint/$', views.get_complaint, name='complaint'),
+        url(r'^get_complaint_id/$', views.get_complaint_id, name='complaint_id'),
+        url(r'^addcomplaint/$', views.addcomplaint, name='addcomplaint'),
+        url(r'^addcomplaint2/$', views.addcomplaint2, name='addcomplaint2'),
+        url(r'^listcomplaint/$', views.listcomplaint, name='listcomplaint'),
+        url(r'^deletecomplaint/$', views.deletecomplaint, name='deletecomplaint'),
 ]

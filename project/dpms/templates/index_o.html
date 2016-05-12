@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title></title>
+    </head>
+
+    <body>
+        <h1>welcome {{username}} !</h1>
+        <br>
+        {% if username == 'root' %}
+            <a href="/dpms/listuser/">用户管理</a>
+            <a href="/dpms/listdevice/">设备管理</a>
+            <a href="/dpms/listcharge/">收费管理</a>
+            <a href="/dpms/listrepair/">报修管理</a>
+            <a href="/dpms/listroom/">房间管理</a>
+            <a href="/dpms/listcomplaint/">投诉管理</a>
+        {% else %}
+        <a href="/dpms/alteruserbyname/?name={{ username }}">修改信息</a>
+        <a href="/dpms/listcomplaint/">投诉</a>
+        <a href="/dpms/listrepair/">报修管理</a>
+        {% endif %}
+        <a href="/dpms/logout/">退出</a>
+    </body>
+</html>

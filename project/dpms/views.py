@@ -32,10 +32,11 @@ def login(req):
         return response
 
     if req.method == 'POST':
-        user_form = UserForm(req.POST)
-        if user_form.is_valid():
-            username = user_form.cleaned_data['username']
-            password = user_form.cleaned_data['password']
+        username = req.POST.get("user")
+        password = req.POST.get("passwd")
+        print username, password
+        op = req.POST.get("op")
+        if op == "login":
             user = User_info.objects.filter(user_name__exact=username, password__exact=password)
             if user:
                 response = HttpResponseRedirect('/dpms/index/')
@@ -43,16 +44,23 @@ def login(req):
                 return response
             else:
                 return render_to_response('reload_login.html', {'info': '用户名或密码错误', 'next': '登陆'}, context_instance=RequestContext(req))
+        else:
+            has = User_info.objects.filter(user_name=username)
+            if has:
+                return render_to_response('reload.html', {'info' : '用户名已存在', 'next': '登陆'}, context_instance=RequestContext(req))
+            else:
+                User_info.objects.create(user_name=username, password=password)
+                response = HttpResponse('regist success!! <a href="/dpms/login/"> login </a>')
+                response.set_cookie('username', username, 3600)
+                return response
     else:
         user_form = UserForm()
-    return render_to_response('login.html', {'user_form': user_form}, context_instance=RequestContext(req))
+    return render_to_response('login_test.html', {'user_form': user_form}, context_instance=RequestContext(req))
 
 def regist(req):
     if req.method == 'POST':
-        user_form = UserForm(req.POST)
-        if user_form.is_valid():
-            username = user_form.cleaned_data['username']
-            password = user_form.cleaned_data['password']
+            username = req.POST.get("user")
+            password = req.POST.get("passwd")
             has = User_info.objects.filter(user_name=username)
             if has:
                 return render_to_response('reload.html', {'info' : '用户名已存在', 'next': '登陆'}, context_instance=RequestContext(req))

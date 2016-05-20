@@ -32,7 +32,7 @@ def listuser2(req):
         ids = req.GET['id']
         all_users = User_info.objects.filter(pk = ids)
         fm = list(all_users)
-        return render_to_response('list_user_self.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('list_user_self_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 
 def adduser2(req):
@@ -44,7 +44,7 @@ def adduser2(req):
         return HttpResponseRedirect('/dpms/listuser/')
     else:
         fm = UserInfoForm()
-        return render_to_response('add_user.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('add_user_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 
 def adduser(req):
@@ -77,7 +77,7 @@ def alteruser(req):
     if req.method == 'GET':
         ids = req.GET.get('id')
         user = User_info.objects.filter(pk = ids)
-        return render_to_response('user_update.html', {'data': user[0]}, context_instance=RequestContext(req))
+        return render_to_response('user_update_main.html', {'data': user[0]}, context_instance=RequestContext(req))
 
 def alteruserbyname(req):
     if req.method == 'GET':

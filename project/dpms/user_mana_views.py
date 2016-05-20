@@ -16,10 +16,15 @@ class UserInfoForm(ModelForm):
 
 def listuser(req):
     response = HttpResponse("hi")
+    username = req.COOKIES.get('username', '')
+    if not username:
+        return HttpResponseRedirect("/dpms/login")
+
     if req.method == 'GET':
         all_users = User_info.objects.all()
         fm = list(all_users)
-        return render_to_response('list_user.html', {'fm': fm}, context_instance=RequestContext(req))
+        print all_users[0].user_gender
+        return render_to_response('list_user_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def listuser2(req):
     response = HttpResponse("hi")
@@ -108,4 +113,4 @@ def get_user(req):
 
         user = User_info.objects.filter(f)
         fm = list(user)
-        return render_to_response('list_user.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('list_user_main.html', {'fm': fm}, context_instance=RequestContext(req))

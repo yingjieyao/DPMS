@@ -20,7 +20,7 @@
                 <div id="top">
                     <h1><a href="#">SpringTime</a></h1>
                     <div id="top-navigation">
-                        欢迎&nbsp;<a href="#"><strong>{{username}}</strong></a>
+                        欢迎&nbsp;<a href="#"><strong><span id="sdf" value="sdfsd"></span></strong></a>
                         <span>|</span>
                         <a href="#">Help</a>
                         <span>|</span>
@@ -93,6 +93,7 @@
                             <div class="table">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
+                                        <td>用户id</td>
                                         <td>用户姓名</td>
                                         <td>性别</td>
                                         <td>籍贯 </td>
@@ -104,7 +105,7 @@
                                     {% if d.user_name != 'root' %}
                                     <tr {% if forloop.counter|divisibleby:"2" %}
                                         class="odd" {% endif %}>
-                                        <!-- <td>{{ d.id }} </td> -->
+                                        <td>{{ d.id }} </td>
                                         <td>{{ d.user_name}} </td>
                                         <td> {{ d.user_gender }} </td>
                                         <td> {{ d.user_hometown }} </td>

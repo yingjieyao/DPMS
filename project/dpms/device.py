@@ -18,7 +18,7 @@ def listdevice(req):
     if req.method == 'GET':
         device = Device.objects.all()
         fm = list(device)
-        return render_to_response('list_device.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('list_device_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def adddevice2(req):
     if req.method == "POST":
@@ -39,18 +39,19 @@ def adddevice(req):
     response = HttpResponse("adddevice")
     if req.method == 'POST':
         fm = DeviceForm(req.POST)
+        print fm
         if fm.is_valid():
             fm.save()
         return HttpResponseRedirect('/dpms/listdevice/')
     else:
         fm = DeviceForm()
-        return render_to_response('add_device.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('add_device_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def get_device_id(req):
     if req.method == 'GET':
         ids = req.GET.get('id')
         device = Device.objects.filter(pk = ids)
-        return render_to_response('device_update.html', {'data': device[0]}, context_instance=RequestContext(req))
+        return render_to_response('device_update_main.html', {'data': device[0]}, context_instance=RequestContext(req))
 
 
 def deletedevice(req):
@@ -69,5 +70,5 @@ def get_device(req):
             f = f & Q(('device_type', typ.strip()))
         device = Device.objects.filter(f)
         fm = list(device)
-        return render_to_response('list_device.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('list_device_main.html', {'fm': fm}, context_instance=RequestContext(req))
     pass

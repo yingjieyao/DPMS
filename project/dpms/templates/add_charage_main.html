@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>Free CSS template Collect from Cssmoban.com</title>
+        <link rel="stylesheet" href="/static/css/main_style.css" type="text/css" media="all" />
+    </head>
+    <body>
+        <!-- Header -->
+        <div id="header">
+            <div class="shell">
+                <!-- Logo + Top Nav -->
+                <div id="top">
+                    <h1><a href="#">SpringTime</a></h1>
+                    <div id="top-navigation">
+                        欢迎&nbsp;<a href="#"><strong>{{username}}</strong></a>
+                        <span>|</span>
+                        <a href="#">Help</a>
+                        <span>|</span>
+                        <a href="#">Profile Settings</a>
+                        <span>|</span>
+                        <a href="/dpms/logout">Log out</a>
+                    </div>
+                </div>
+                <!-- End Logo + Top Nav -->
+
+                <!-- Main Nav -->
+                <div id="navigation">
+                    <ul>
+                        <li><a href="/dpms/index"><span>&nbsp;首页 &nbsp;</span></a></li>
+                        <li><a href="/dpms/listuser"><span>&nbsp;用户管理&nbsp;</span></a></li>
+                        <li><a href="/dpms/listdevice" class="active"><span>&nbsp;设备管理&nbsp;</span></a></li>
+                        <li><a href="/dpms/listcharge"><span>&nbsp;收费管理&nbsp;</span></a></li>
+                        <li><a href="/dpms/listrepair"><span>&nbsp;维修管理&nbsp;</span></a></li>
+                        <li><a href="/dpms/listroom"><span>&nbsp;房间管理&nbsp;</span></a></li>
+                        <li><a href="/dpms/listcomplaint"><span>&nbsp;投诉管理&nbsp;</span></a></li>
+                    </ul>
+                </div>
+                <!-- End Main Nav -->
+            </div>
+        </div>
+        <!-- End Header -->
+        <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
+
+        <!-- Container -->
+
+        <div id="container">
+            <div class="shell">
+
+                <!-- Small Nav -->
+                <div class="small-nav">
+                    <a href="#">Dashboard</a>
+                    <span>&gt;</span>
+                    设备管理
+                </div>
+                <!-- End Small Nav -->
+
+            </div>
+        </div>
+        <div id="container">
+            <div class="shell">
+
+                <!-- Main -->
+                <div id="main">
+                    <div class="cl">&nbsp;</div>
+
+                    <!-- Content -->
+                    <div id="content">
+
+                        <!-- Box -->
+                        <div class="box">
+                            <!-- Box Head -->
+                            <div class="box-head">
+                                <h2 class="left">设备管理</h2>
+                                <!--<div class="right">
+                                    <label>搜索用户</label>
+                                    <input type="text" class="field small-field" />
+                                    <input type="submit" class="button" value="search" />
+                                </div> -->
+                            </div>
+                            <!-- End Box Head -->
+                            <table>
+                                {% csrf_token %}
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="form">
+                                        <input type="hidden" name="id" value="{{ data.id }}"/>
+                                        <label>设备名称:</label><input class="field size1" name="name" type="text" value="{{ data.user_name }}"></br>
+                                        <label>设备类型:</label><input class="field size1" name="device_type" type="text" value="{{ data.user_gender }}"></br>
+                                        <label> brand: </label><input class="field size1" name="brand" type="text" value="{{ data.user_hometown }}"></br>
+                                        <label>添加日期:</label><input class="field size1" name="date" type="text" value="{{ data.user_phone }}"></br>
+                                        <div class="buttons">
+
+                                            <input type="submit" value="保存" class="button"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </table>
+
+                            <!-- Table -->
+                            <!-- Pagging -->
+                            <!-- End Pagging -->
+
+                        </div>
+                        <!-- Table -->
+
+                    </div>
+                    <!-- End Box -->
+
+                    <!-- End Box -->
+                </div>
+                <!-- End Content -->
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+
+                    <!-- Box -->
+                    <div class="box">
+
+                        <!-- Box Head -->
+                        <div class="box-head">
+                            <h2>Management</h2>
+                        </div>
+                        <!-- End Box Head-->
+
+                        <!-- <div class="box-content">
+                            <a href="" class="add-button"><span>Add new Article</span></a>
+                            <div class="cl">&nbsp;</div>
+
+                            <!-- End Sort -->
+
+                        </div> -->
+                    </div>
+                    <!-- End Box -->
+                </div>
+                <!-- End Sidebar -->
+
+                <div class="cl">&nbsp;</div>
+            </div>
+            <!-- Main -->
+        </div>
+    </div>
+    <!-- End Container -->
+
+    <!-- Footer -->
+    <div id="footer">
+        <div class="shell">
+            <span class="right">
+            </span>
+        </div>
+    </div>
+    <!-- End Footer -->
+
+</body>
+</html>

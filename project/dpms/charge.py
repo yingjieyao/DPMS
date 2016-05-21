@@ -21,7 +21,7 @@ def listcharge(req):
         for ch in charge:
             print ch.user_id
         fm = list(charge)
-        return render_to_response('list_charge.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('list_charge_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def addcharge2(req):
     if req.method == "POST":
@@ -31,6 +31,7 @@ def addcharge2(req):
         date = Charge.objects.filter(pk = data.id)
         data.charge_date = date[0].charge_date
         data.charge_type = req.POST['charge_type']
+        data.charge_date = req.POST['charge_date']
         data.charge_total = req.POST['charge_total']
         data.charge_complet = req.POST['charge_complet']
         data.charge_cont = req.POST['charge_cont']
@@ -47,13 +48,13 @@ def addcharge(req):
         return HttpResponseRedirect('/dpms/listcharge/')
     else:
         fm = ChargeForm()
-        return render_to_response('add_charge.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('add_charge_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def get_charge_id(req):
     if req.method == 'GET':
         ids = req.GET.get('id')
         device = Charge.objects.filter(pk = ids)
-        return render_to_response('charge_update.html', {'data': device[0]}, context_instance=RequestContext(req))
+        return render_to_response('charge_update_main.html', {'data': device[0]}, context_instance=RequestContext(req))
 
 
 def deletecharge(req):
@@ -79,7 +80,7 @@ def get_charge(req):
                 t = t & Q(("user_id", users[0].id))
                 lis = Charge.objects.filter(t)
                 fm = list(lis)
-                return render_to_response('list_charge.html', {'fm': fm}, context_instance=RequestContext(req))
+                return render_to_response('list_charge_main.html', {'fm': fm}, context_instance=RequestContext(req))
         else:
             return HttpResponseRedirect("/dpms/listcharge/")
 

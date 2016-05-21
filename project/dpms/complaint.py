@@ -40,10 +40,13 @@ def addcomplaint(req):
         fm = ComplaintForm(req.POST)
         if fm.is_valid():
             fm.save()
-        return HttpResponseRedirect('/dpms/listcomplaint/')
+        if req.COOKIES.get('username', ''):
+            return HttpResponseRedirect('/dpms/listcomplaint/')
+        else:
+            return HttpRequestRedirect('/dpms/index/')
     else:
         fm = ComplaintForm()
-        return render_to_response('add_complaint.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('add_complaint_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def get_complaint_id(req):
     if req.method == 'GET':

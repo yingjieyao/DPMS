@@ -39,10 +39,13 @@ def addrepair(req):
         fm = RepairForm(req.POST)
         if fm.is_valid():
             fm.save()
-        return HttpResponseRedirect('/dpms/listrepair/')
+        return HttpResponseRedirect('/dpms/index/')
     else:
         fm = RepairForm()
-        return render_to_response('add_repair_main.html', {'fm': fm}, context_instance=RequestContext(req))
+        if req.COOKIES.get('username', '') == 'root':
+            return render_to_response('add_repair_main.html', {'fm': fm}, context_instance=RequestContext(req))
+        else:
+            return render_to_response('add_repair_main_user.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def get_repair_id(req):
     if req.method == 'GET':

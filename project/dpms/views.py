@@ -22,8 +22,10 @@ def index(req):
     if not username:
         return render_to_response('reload_login.html', {'info': '请登陆', 'next': '登陆'}, context_instance=RequestContext(req))
     else:
-        return render_to_response('main_page.html', {'username': username}, context_instance=RequestContext(req))
-    # return render_to_response('main_page.html', {'username': username}, context_instance=RequestContext(req))
+        if req.COOKIES.get('username', '') == 'root':
+            return render_to_response('main_page.html', {'username': username}, context_instance=RequestContext(req))
+        else:
+            return render_to_response('main_page_user.html', {'username': username}, context_instance=RequestContext(req))
 
 def login(req):
     username = req.COOKIES.get('username', '')

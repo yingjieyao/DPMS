@@ -18,7 +18,7 @@ def listcomplaint(req):
     if req.method == 'GET':
         complaint = Complaint.objects.all()
         fm = list(complaint)
-        return render_to_response('list_comp.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('list_comp_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def addcomplaint2(req):
     if req.method == "POST":

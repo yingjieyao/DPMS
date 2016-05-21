@@ -18,7 +18,7 @@ def listroom(req):
     if req.method == 'GET':
         room = Room.objects.all()
         fm = list(room)
-        return render_to_response('list_room.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('list_room_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def addroom2(req):
     if req.method == "POST":
@@ -41,13 +41,13 @@ def addroom(req):
         return HttpResponseRedirect('/dpms/listroom/')
     else:
         fm = RoomForm()
-        return render_to_response('add_room.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('add_room_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def get_room_id(req):
     if req.method == 'GET':
         ids = req.GET.get('id')
         device = Room.objects.filter(pk = ids)
-        return render_to_response('room_update.html', {'data': device[0]}, context_instance=RequestContext(req))
+        return render_to_response('room_update_main.html', {'data': device[0]}, context_instance=RequestContext(req))
 
 
 def deleteroom(req):
@@ -72,5 +72,5 @@ def get_room(req):
 
         roomlist = Room.objects.filter(f)
         fm = list(roomlist)
-        return render_to_response('list_room.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('list_room_main.html', {'fm': fm}, context_instance=RequestContext(req))
 

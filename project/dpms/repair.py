@@ -17,7 +17,7 @@ def listrepair(req):
     if req.method == 'GET':
         charge = Repair.objects.all()
         fm = list(charge)
-        return render_to_response('list_repair.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('list_repair_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def addrepair2(req):
     if req.method == "POST":
@@ -42,7 +42,7 @@ def addrepair(req):
         return HttpResponseRedirect('/dpms/listrepair/')
     else:
         fm = RepairForm()
-        return render_to_response('add_repair.html', {'fm': fm}, context_instance=RequestContext(req))
+        return render_to_response('add_repair_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
 def get_repair_id(req):
     if req.method == 'GET':

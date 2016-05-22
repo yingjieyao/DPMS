@@ -46,6 +46,31 @@ def adduser2(req):
         fm = UserInfoForm()
         return render_to_response('add_user_main.html', {'fm': fm}, context_instance=RequestContext(req))
 
+def adduser_self(req):
+    response = HttpResponse("adduser")
+    if req.method == 'POST':
+        fm = UserInfoForm(req.POST)
+        user = User_info()
+        data = req.POST
+        id = req.POST['id']
+        if len(id) > 0:
+            user.id = data['id']
+        user.user_name = data['user_name']
+        user.user_gender = data['user_gender']
+        user.user_hometown = data['user_hometown']
+        user.user_phone = data['user_phone']
+        user.user_idcard = data['user_idcard']
+        user.user_company = data['user_company']
+        old = User_info.objects.filter(user_name = user.user_name)
+        user.password = old[0].password
+        user.save()
+        # if fm.is_valid():
+        #     fm.save()
+        return HttpResponseRedirect('/dpms/index/')
+    else:
+        fm = UserInfoForm()
+        return render_to_response('add_user.html', {'fm': fm}, context_instance=RequestContext(req))
+
 
 def adduser(req):
     response = HttpResponse("adduser")
@@ -62,6 +87,8 @@ def adduser(req):
         user.user_phone = data['user_phone']
         user.user_idcard = data['user_idcard']
         user.user_company = data['user_company']
+        old = User_info.objects.filter(user_name = user.user_name)
+        user.password = old[0].password
         user.save()
         # if fm.is_valid():
         #     fm.save()
@@ -114,3 +141,16 @@ def get_user(req):
         user = User_info.objects.filter(f)
         fm = list(user)
         return render_to_response('list_user_main.html', {'fm': fm}, context_instance=RequestContext(req))
+
+def change_profile(req):
+    if req.method == "GET":
+        user_name = req.COOKIES.get('username', '')
+        f = Q()
+        if not user_name:
+            return HttpResponseRedirect("/dpms/index")
+        f = f & Q(('user_name', user_name.strip()))
+        user = User_info.objects.filter(f)
+        print 'here'
+        print user[0].user_gender
+        return render_to_response('user_update_main_user.html', {'data': user[0]}, context_instance=RequestContext(req))
+

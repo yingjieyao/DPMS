@@ -40,10 +40,10 @@ def addcomplaint(req):
         fm = ComplaintForm(req.POST)
         if fm.is_valid():
             fm.save()
-        if req.COOKIES.get('username', ''):
+        if req.COOKIES.get('username', '') == 'root':
             return HttpResponseRedirect('/dpms/listcomplaint/')
         else:
-            return HttpRequestRedirect('/dpms/index/')
+            return HttpResponseRedirect('/dpms/index/')
     else:
         fm = ComplaintForm()
         return render_to_response('add_complaint_main.html', {'fm': fm}, context_instance=RequestContext(req))

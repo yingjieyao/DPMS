@@ -8,7 +8,8 @@
     <script language="javascript">
         function getuser() {
             var names = document.getElementById('yyj').value;
-            window.location.href="/dpms/get_charge/?name=" + names;
+            var time = document.getElementById('yyj1').value;
+            window.location.href="/dpms/get_charge/?name=" + names + "&date=" + time;
         }
     </script>
     <body>
@@ -81,6 +82,8 @@
                                 <div class="right">
                                     <label>业主姓名</label>
                                     <input id="yyj" type="text" class="field small-field" name="yyj" />
+                                    <label>时间</label>
+                                    <input id="yyj1" type="date" class="field small-field" name="yyj1" />
                                     <input type="button" class="button" value="search" onclick="getuser()"/>
                                 </div>
                             </div>

@@ -68,19 +68,21 @@ def deletecharge(req):
 def get_charge(req):
     if req.method == "GET":
         name = req.GET.get("name")
+        time = req.GET.get("date")
         f = Q()
         if len(name):
             f = f & Q(('user_name', name.strip()))
-            users = User_info.objects.filter(f)
-            if len(users) == 0:
-                fm = []
-                return render_to_response('list_charge.html', {'fm': fm}, context_instance=RequestContext(req))
-            else:
-                t = Q()
-                t = t & Q(("user_id", users[0].id))
-                lis = Charge.objects.filter(t)
-                fm = list(lis)
-                return render_to_response('list_charge_main.html', {'fm': fm}, context_instance=RequestContext(req))
-        else:
-            return HttpResponseRedirect("/dpms/listcharge/")
+
+
+        users = User_info.objects.filter(f)
+        t = Q()
+        if len(users) != 0:
+            t = t & Q(("user_id", users[0].id))
+
+        if len(time):
+            t = t & Q(('charge_date', time.strip()))
+
+        lis = Charge.objects.filter(t)
+        fm = list(lis)
+        return render_to_response('list_charge_main.html', {'fm': fm}, context_instance=RequestContext(req))
 

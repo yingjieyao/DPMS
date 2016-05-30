@@ -70,14 +70,12 @@ def get_charge(req):
         name = req.GET.get("name")
         time = req.GET.get("date")
         f = Q()
+        t = Q()
         if len(name):
             f = f & Q(('user_name', name.strip()))
-
-
-        users = User_info.objects.filter(f)
-        t = Q()
-        if len(users) != 0:
-            t = t & Q(("user_id", users[0].id))
+            users = User_info.objects.filter(f)
+            if len(users) != 0:
+                t = t & Q(("user_id", users[0].id))
 
         if len(time):
             t = t & Q(('charge_date', time.strip()))
